@@ -1,12 +1,11 @@
 import SearchForm from '@/components/SearchForm'
+import Title from '@/components/Title'
 import Link from 'next/link'
 
 export default function Home() {
   return (
     <main className='flex flex-col items-center px-3 pt-36'>
-      <h1 className='text-3xl font-bold tracking-tight lg:text-6xl'>
-        Find events around you
-      </h1>
+      <Title>Find events around you</Title>
 
       <p className='mb-12 mt-7 text-2xl lg:text-3xl opacity-75'>
         Browse more than{' '}
