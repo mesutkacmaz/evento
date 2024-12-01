@@ -12,14 +12,14 @@ export default async function EventsPage({ params }: EventsPageProps) {
   const { city } = await params;
 
   const res = await fetch(
-    "https://bytegrad.com/course-assets/projects/evento/api/events?city=austin",
+    `https://bytegrad.com/course-assets/projects/evento/api/events?city=${city}`,
   );
 
   const events: EventoEvent[] = await res.json();
 
   return (
     <main className="flex min-h-[110dvh] flex-col items-center px-[20px] py-24">
-      <Title>
+      <Title className="mb-28">
         {city === "all" && "All Events"}
         {city !== "all" &&
           `Events is ${city.charAt(0).toUpperCase() + city.slice(1)}`}
