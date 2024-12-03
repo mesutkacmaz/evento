@@ -1,20 +1,29 @@
 import Title from "@/components/Title";
+import { getEvent } from "@/lib/utils";
+import { Metadata } from "next";
 import Image from "next/image";
 
-type EventPageProps = {
+type Props = {
   params: Promise<{
     slug: string;
   }>;
 };
 
-export default async function EventPage({ params }: EventPageProps) {
+// Add dynamic variables to the title
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
 
-  const res = await fetch(
-    `https://bytegrad.com/course-assets/projects/evento/api/events/${slug}`,
-  );
+  const event = await getEvent(slug);
 
-  const event = await res.json();
+  return {
+    title: `Event: ${event.name}`,
+  };
+}
+
+export default async function EventPage({ params }: Props) {
+  const { slug } = await params;
+
+  const event = await getEvent(slug);
 
   return (
     <main>
