@@ -11,6 +11,10 @@ type Props = {
   }>;
 };
 
+type EventsPageProps = Props & {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
 // Add dynamic variables to the title
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { city } = await params;
@@ -20,8 +24,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function EventsPage({ params }: Props) {
+export default async function EventsPage({
+  params,
+  searchParams,
+}: EventsPageProps) {
   const { city } = await params;
+
+  const page = (await searchParams).page ?? 1;
 
   return (
     <main className="flex min-h-[110dvh] flex-col items-center px-[20px] py-24">
@@ -30,8 +39,8 @@ export default async function EventsPage({ params }: Props) {
         {city !== "all" && `Events is ${capitalize(city)}`}
       </Title>
 
-      <Suspense fallback={<Loading />}>
-        <EventsList city={city} />
+      <Suspense key={city + page} fallback={<Loading />}>
+        <EventsList city={city} page={+page} />
       </Suspense>
     </main>
   );
