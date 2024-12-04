@@ -1,5 +1,5 @@
 import Title from "@/components/Title";
-import { getEvent } from "@/lib/utils";
+import { getEvent } from "@/lib/server-utils";
 import { Metadata } from "next";
 import Image from "next/image";
 
