@@ -21,7 +21,7 @@ export default function SearchForm() {
         type="text"
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
-        className="h-16 w-full rounded-lg bg-white/[7%] px-6 outline-none ring-accent/50 transition focus:bg-white/10 focus:ring-2"
+        className="h-16 w-full rounded-lg bg-white/7 px-6 outline-none ring-accent/50 transition focus:bg-white/10 focus:ring-2"
         placeholder="Search events in any city..."
         spellCheck={false}
       />
